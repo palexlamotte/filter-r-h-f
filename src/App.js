@@ -44,16 +44,15 @@ function App() {
   const onSubmit = (data) => {
     //filter system. called on "OK" button when you submit the filter.
     let filter = dummyData;
-    if (!!data.firstName) {
-      filter = dummyData.filter((x) =>
-        x.firstName.toLowerCase().includes(data.firstName.toLowerCase())
-      );
-    }
-    if (!!data.lastName) {
-      filter = dummyData.filter((x) =>
-        x.lastName.toLowerCase().includes(data.lastName.toLowerCase())
-      );
-    }
+
+    const firstname = data?.firstName || "";
+    const lastname = data?.lastName || "";
+
+    filter = filter.filter(
+      (x) =>
+        x.firstName.toLowerCase().includes(firstname.toLowerCase()) &&
+        x.lastName.toLowerCase().includes(lastname.toLowerCase())
+    );
     setFilteredData(filter);
   };
 
